@@ -109,22 +109,22 @@ public class Game {
             i = (int) (Math.random() * 10);
             j = (int) (Math.random() * 10);
             int napr = (int) (Math.random() * 4);
-            if (testNewPaluba(mas, i, j) == true) {
+            if (testNewPaluba(mas, i, j)) {
                 if (napr == 0) {
-                    if (testNewPaluba(mas, i - (kolPaluba - 1), j) == true)
+                    if (testNewPaluba(mas, i - (kolPaluba - 1), j))
                         flag = true;
                 } else if (napr == 1) {
-                    if (testNewPaluba(mas, i, j + (kolPaluba - 1)) == true)
+                    if (testNewPaluba(mas, i, j + (kolPaluba - 1)))
                         flag = true;
                 } else if (napr == 2) {
-                    if (testNewPaluba(mas, i + (kolPaluba - 1), j) == true)
+                    if (testNewPaluba(mas, i + (kolPaluba - 1), j))
                         flag = true;
                 } else if (napr == 3) {
-                    if (testNewPaluba(mas, i, j - (kolPaluba - 1)) == true)
+                    if (testNewPaluba(mas, i, j - (kolPaluba - 1)))
                         flag = true;
                 }
             }
-            if (flag == true) {
+            if (flag) {
                 mas[i][j] = kolPaluba;
                 okrBegin(mas, i, j, -2);
                 if (napr == 0) {
@@ -142,7 +142,7 @@ public class Game {
                         mas[i + k][j] = kolPaluba;
                         okrBegin(mas, i + k, j, -2);
                     }
-                } else if (napr == 3) {
+                } else {
                     for (int k = kolPaluba - 1; k >= 1; k--) {
                         mas[i][j - k] = kolPaluba;
                         okrBegin(mas, i, j - k, -2);
@@ -160,7 +160,8 @@ public class Game {
         testEndGame();
         if (masComp[i][j] < 8) {
             compHod = true; // передаем ход компьютеру
-            while (compHod == true) compHod = compHodit();
+            while (compHod)
+                compHod = compHodit();
         }
     }
 
@@ -186,7 +187,7 @@ public class Game {
     }
 
     private void setOkrPodbit(int[][] mas, int i, int j) {
-        if (testMasPoz(i, j) == true) {
+        if (testMasPoz(i, j)) {
             if ((mas[i][j] == -1) || (mas[i][j] == 6)) {
                 mas[i][j]--;
             }
@@ -237,7 +238,7 @@ public class Game {
                 }
             }
         }
-        if (flag == false) {
+        if (!flag) {
             for (int l = 1; l <= 100; l++) {
                 int i = (int) (Math.random() * 10);
                 int j = (int) (Math.random() * 10);
@@ -250,7 +251,7 @@ public class Game {
                     break;
                 }
             }
-            if (flag == false) {
+            if (!flag) {
                 for (int i = 0; i < 10; i++) {
                     for (int j = 0; j < 10; j++) {
                         if ((masPlay[i][j] <= 4) && (masPlay[i][j] != -2)) {

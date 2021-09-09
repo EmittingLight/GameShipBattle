@@ -23,12 +23,14 @@ public class Field extends JPanel {
     private int mY;
 
     public class myMouse1 implements MouseListener {
-        public void mouseClicked(MouseEvent e) {}
+        public void mouseClicked(MouseEvent e) {
+        }
+
         public void mousePressed(MouseEvent e) {
             if ((e.getButton() == 1) && (e.getClickCount() == 1)) {
                 mX = e.getX();
                 mY = e.getY();
-                if ((mX > 100)&& (mY > 100) && (mX < 400) && (mY < 400)) {
+                if ((mX > 100) && (mY > 100) && (mX < 400) && (mY < 400)) {
                     if ((myGame.endg == 0) && (!myGame.compHod)) {
                         int i = (mY - 100) / 30;
                         int j = (mX - 100) / 30;
@@ -39,20 +41,22 @@ public class Field extends JPanel {
             }
         }
 
-        public void mouseReleased(MouseEvent e) { }
+        public void mouseReleased(MouseEvent e) {
+        }
 
 
+        public void mouseEntered(MouseEvent e) {
+        }
 
-        public void mouseEntered(MouseEvent e) { }
 
-
-
-        public void mouseExited(MouseEvent e) { }
+        public void mouseExited(MouseEvent e) {
+        }
 
     }
 
     public class myMouse2 implements MouseMotionListener {
-        public void mouseDragged(MouseEvent e) { }
+        public void mouseDragged(MouseEvent e) {
+        }
 
         public void mouseMoved(MouseEvent e) {
             mX = e.getX();
@@ -127,27 +131,24 @@ public class Field extends JPanel {
             for (int j = 0; j < 10; j++) {
                 if (myGame.masComp[i][j] != 0) {
                     if ((myGame.masComp[i][j] >= 8) && (myGame.masComp[i][j] <= 11)) {
-                        gr.drawImage(ranen, 100 + j * 30, 100 + i * 30, 30, 30,null);
-                    }
-                    else if (myGame.masComp[i][j] >= 15) {
-                        gr.drawImage(ubit, 100 + j * 30, 100 + i * 30, 30, 30,null);
+                        gr.drawImage(ranen, 100 + j * 30, 100 + i * 30, 30, 30, null);
+                    } else if (myGame.masComp[i][j] >= 15) {
+                        gr.drawImage(ubit, 100 + j * 30, 100 + i * 30, 30, 30, null);
                     }
                     if (myGame.masComp[i][j] >= 5) {
-                        gr.drawImage(bomba, 100 + j * 30, 100 + i * 30, 30, 30,null);
+                        gr.drawImage(bomba, 100 + j * 30, 100 + i * 30, 30, 30, null);
                     }
                 }
                 if (myGame.masPlay[i][j] != 0) {
                     if ((myGame.masPlay[i][j] >= 1) && (myGame.masPlay[i][j] <= 4)) {
                         gr.drawImage(paluba, 500 + j * 30, 100 + i * 30, 30, 30, null);
-                    }
-                    else if ((myGame.masPlay[i][j] >= 8) && (myGame.masPlay[i][j] <= 11)) {
-                        gr.drawImage(ranen, 500 + j * 30, 100 + i * 30, 30, 30,null);
-                    }
-                    else if (myGame.masPlay[i][j] >= 15) {
-                        gr.drawImage(ubit, 500 + j * 30, 100 + i * 30, 30, 30,null);
+                    } else if ((myGame.masPlay[i][j] >= 8) && (myGame.masPlay[i][j] <= 11)) {
+                        gr.drawImage(ranen, 500 + j * 30, 100 + i * 30, 30, 30, null);
+                    } else if (myGame.masPlay[i][j] >= 15) {
+                        gr.drawImage(ubit, 500 + j * 30, 100 + i * 30, 30, 30, null);
                     }
                     if (myGame.masPlay[i][j] >= 5) {
-                        gr.drawImage(bomba, 500 + j * 30, 100 + i * 30, 30, 30,null);
+                        gr.drawImage(bomba, 500 + j * 30, 100 + i * 30, 30, 30, null);
                     }
                 }
             }
@@ -179,8 +180,7 @@ public class Field extends JPanel {
         if (myGame.endg == 1) // Если победил Игрок
         {
             gr.drawImage(end1, 300, 200, 300, 100, null);
-        }
-        else if (myGame.endg == 2) // Если победил Компьютер
+        } else if (myGame.endg == 2) // Если победил Компьютер
         {
             gr.drawImage(end2, 300, 200, 300, 100, null);
         }
