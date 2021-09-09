@@ -69,7 +69,7 @@ public class Game {
 
     }
 
-    private void make1P(int[][] mas) {
+    /*private void make1P(int[][] mas) {
         for (int k = 1; k <= 4; k++) {
             while (true) {
                 int i = (int) (Math.random() * 10);
@@ -82,7 +82,7 @@ public class Game {
             }
         }
     }
-
+*/
     private void okrEnd(int[][] mas) {
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 10; j++) {
@@ -155,6 +155,146 @@ public class Game {
     }
 
     public void vistrelPlay(int i, int j) {
+        masComp[i][j] += 7;
+        testUbit(masComp, i, j);
+        testEndGame();
+        if (masComp[i][j] < 8) {
+            compHod = true; // передаем ход компьютеру
+            while (compHod == true) compHod = compHodit();
+        }
+    }
 
+    private void testEndGame() {
+        int testNumber = 330;
+        int kolComp = 0; // Сумма убитых палуб компьютера
+        int kolPlay = 0; // Сумма убитых палуб игрока
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 10; j++) {
+                if (masPlay[i][j] >= 15) {
+                    kolPlay += masPlay[i][j];
+                }
+                if (masComp[i][j] >= 15) {
+                    kolComp += masComp[i][j];
+                }
+            }
+        }
+        if (kolPlay == testNumber) {
+            endg = 2; // Если победил игрок
+        } else if (kolComp == testNumber) {
+            endg = 1; // Если победил компьютер
+        }
+    }
+
+    private void setOkrPodbit(int[][] mas, int i, int j) {
+        if (testMasPoz(i, j) == true) {
+            if ((mas[i][j] == -1) || (mas[i][j] == 6)) {
+                mas[i][j]--;
+            }
+        }
+    }
+
+    private void okrPodbit(int[][] mas, int i, int j) {
+        setOkrPodbit(mas, i - 1, j - 1); // сверху слева
+        setOkrPodbit(mas, i - 1, j); // сверху
+        setOkrPodbit(mas, i - 1, j + 1); // сверху справа
+        setOkrPodbit(mas, i, j + 1); // справа
+        setOkrPodbit(mas, i + 1, j + 1); // снизу справа
+        setOkrPodbit(mas, i + 1, j); // снизу
+        setOkrPodbit(mas, i + 1, j - 1); // снизу слева
+        setOkrPodbit(mas, i, j - 1); // слева
+    }
+
+    private boolean compHodit() {
+        boolean rez = false;
+        boolean flag = false;
+
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 10; j++) {
+                if ((masPlay[i][j] >= 9) && (masPlay[i][j] <= 11)) {
+                    flag = true;
+                    if (testMasPoz(i - 1, j) && (masPlay[i - 1][j] <= 4) && (masPlay[i - 1][j] != -2)) {
+                        masPlay[i - 1][j] += 7;
+                        testUbit(masPlay, i - 1, j);
+                        if (masPlay[i - 1][j] >= 8) rez = true;
+                        break;
+                    } else if (testMasPoz(i + 1, j) && (masPlay[i + 1][j] <= 4) && (masPlay[i + 1][j] != -2)) {
+                        masPlay[i + 1][j] += 7;
+                        testUbit(masPlay, i + 1, j);
+                        if (masPlay[i + 1][j] >= 8) rez = true;
+                        break;
+                    }
+                    if (testMasPoz(i, j - 1) && (masPlay[i][j - 1] <= 4) && (masPlay[i][j - 1] != -2)) {
+                        masPlay[i][j - 1] += 7;
+                        testUbit(masPlay, i, j - 1);
+                        if (masPlay[i][j - 1] >= 8) rez = true;
+                        break;
+                    } else if (testMasPoz(i, j + 1) && (masPlay[i][j + 1] <= 4) && (masPlay[i][j + 1] != -2)) {
+                        masPlay[i][j + 1] += 7;
+                        testUbit(masPlay, i, j + 1);
+                        if (masPlay[i][j + 1] >= 8) rez = true;
+                        break;
+                    }
+                }
+            }
+        }
+        if (flag == false) {
+            for (int l = 1; l <= 100; l++) {
+                int i = (int) (Math.random() * 10);
+                int j = (int) (Math.random() * 10);
+                if ((masPlay[i][j] <= 4) && (masPlay[i][j] != -2)) {
+                    masPlay[i][j] += 7;
+                    testUbit(masPlay, i, j);
+                    if (masPlay[i][j] >= 8)
+                        rez = true;
+                    flag = true;
+                    break;
+                }
+            }
+            if (flag == false) {
+                for (int i = 0; i < 10; i++) {
+                    for (int j = 0; j < 10; j++) {
+                        if ((masPlay[i][j] <= 4) && (masPlay[i][j] != -2)) {
+                            masPlay[i][j] += 7;
+                            testUbit(masPlay, i, j);
+                            if (masPlay[i][j] >= 8)
+                                rez = true;
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+        testEndGame();
+        return rez;
+    }
+
+    private void testUbit(int[][] mas, int i, int j) {
+        if (mas[i][j] == 8) {
+            mas[i][j] += 7;
+            okrPodbit(mas, i, j);
+        } else if (mas[i][j] == 9) analizUbit(mas, i, j, 2);
+        else if (mas[i][j] == 10) analizUbit(mas, i, j, 3);
+        else if (mas[i][j] == 11) analizUbit(mas, i, j, 4);
+    }
+
+    private void analizUbit(int[][] mas, int i, int j, int kolPalub) {
+        int kolRanen = 0;
+        for (int k = i - (kolPalub - 1); k <= i + (kolPalub - 1); k++) {
+            for (int g = j - (kolPalub - 1); g <= j + (kolPalub - 1); g++) {
+                if (testMasPoz(k, g) && (mas[k][g] == kolPalub + 7)) kolRanen++;
+            }
+        }
+
+        if (kolRanen == kolPalub) {
+            for (int k = i - (kolPalub - 1); k <= i + (kolPalub - 1); k++) {
+                for (int g = j - (kolPalub - 1); g <= j + (kolPalub - 1); g++) {
+                    if (testMasPoz(k, g) && (mas[k][g] == kolPalub + 7)) {
+                        mas[k][g] += 7;
+                        okrPodbit(mas, k, g);
+                    }
+                }
+            }
+        }
     }
 }
+
