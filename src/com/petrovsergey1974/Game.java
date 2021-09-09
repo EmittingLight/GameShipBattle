@@ -24,7 +24,8 @@ public class Game {
         rasstanovkaKorabley(masPlay);
         rasstanovkaKorabley(masComp);
     }
-    private void rasstanovkaKorabley(int[][] mas){
+
+    private void rasstanovkaKorabley(int[][] mas) {
         make4P(mas, 4);
         make4P(mas, 3);
         make4P(mas, 3);
@@ -101,7 +102,7 @@ public class Game {
         return false;
     }
 
-    private void make4P(int[][] mas,  int kolPaluba) {
+    private void make4P(int[][] mas, int kolPaluba) {
         while (true) {
             boolean flag = false;
             int i = 0, j = 0;
@@ -110,7 +111,7 @@ public class Game {
             int napr = (int) (Math.random() * 4);
             if (testNewPaluba(mas, i, j) == true) {
                 if (napr == 0) {
-                    if (testNewPaluba(mas, i -(kolPaluba - 1), j) == true)
+                    if (testNewPaluba(mas, i - (kolPaluba - 1), j) == true)
                         flag = true;
                 } else if (napr == 1) {
                     if (testNewPaluba(mas, i, j + (kolPaluba - 1)) == true)
@@ -119,7 +120,7 @@ public class Game {
                     if (testNewPaluba(mas, i + (kolPaluba - 1), j) == true)
                         flag = true;
                 } else if (napr == 3) {
-                    if (testNewPaluba(mas, i, j -(kolPaluba - 1)) == true)
+                    if (testNewPaluba(mas, i, j - (kolPaluba - 1)) == true)
                         flag = true;
                 }
             }
@@ -128,7 +129,7 @@ public class Game {
                 okrBegin(mas, i, j, -2);
                 if (napr == 0) {
                     for (int k = kolPaluba - 1; k >= 1; k--) {
-                        mas[i -k][j] = kolPaluba;
+                        mas[i - k][j] = kolPaluba;
                         okrBegin(mas, i - k, j, -2);
                     }
                 } else if (napr == 1) {
@@ -143,7 +144,7 @@ public class Game {
                     }
                 } else if (napr == 3) {
                     for (int k = kolPaluba - 1; k >= 1; k--) {
-                        mas[i][j -k] = kolPaluba;
+                        mas[i][j - k] = kolPaluba;
                         okrBegin(mas, i, j - k, -2);
                     }
                 }
@@ -151,5 +152,9 @@ public class Game {
             }
         }
         okrEnd(mas);
+    }
+
+    public void vistrelPlay(int i, int j) {
+
     }
 }
