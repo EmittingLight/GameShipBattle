@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="GameShipBattle:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/GameShipBattle_jar</output-path>
+    <root id="archive" name="GameShipBattle.jar">
+      <element id="module-output" name="GameShipBattle" />
+    </root>
+  </artifact>
+</component>
