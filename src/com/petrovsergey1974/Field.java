@@ -10,7 +10,7 @@ import java.io.IOException;
 public class Field extends JPanel {
     private Game myGame;
     private Timer tmDraw;
-    public Image fon;
+    private Image fon;
     private Image ubit;
     private Image paluba;
     private Image ranen;
