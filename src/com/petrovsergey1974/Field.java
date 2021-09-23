@@ -10,7 +10,7 @@ import java.io.IOException;
 public class Field extends JPanel {
     private Game myGame;
     private Timer tmDraw;
-    private Image fon;
+    public Image fon;
     private Image ubit;
     private Image paluba;
     private Image ranen;
@@ -77,13 +77,13 @@ public class Field extends JPanel {
         myGame.start();
 
         try {
-            fon = ImageIO.read(new File("C:\\Users\\Ольга\\Pictures\\battlesea\\fon.png"));
-            paluba = ImageIO.read(new File("C:\\Users\\Ольга\\Pictures\\battlesea\\paluba.png"));
-            ranen = ImageIO.read(new File("C:\\Users\\Ольга\\Pictures\\battlesea\\ranen.png"));
-            ubit = ImageIO.read(new File("C:\\Users\\Ольга\\Pictures\\battlesea\\ubit.png"));
-            end1 = ImageIO.read(new File("C:\\Users\\Ольга\\Pictures\\battlesea\\end1.png"));
-            end2 = ImageIO.read(new File("C:\\Users\\Ольга\\Pictures\\battlesea\\end2.png"));
-            bomba = ImageIO.read(new File("C:\\Users\\Ольга\\Pictures\\battlesea\\bomba.png"));
+            fon = ImageIO.read(new File("src/com/petrovsergey1974/fon.png"));
+            paluba = ImageIO.read(new File("src/com/petrovsergey1974/paluba.png"));
+            ranen = ImageIO.read(new File("src/com/petrovsergey1974/ranen.png"));
+            ubit = ImageIO.read(new File("src/com/petrovsergey1974/ubit.png"));
+            end1 = ImageIO.read(new File("src/com/petrovsergey1974/end1.png"));
+            end2 = ImageIO.read(new File("src/com/petrovsergey1974/end2.png"));
+            bomba = ImageIO.read(new File("src/com/petrovsergey1974/bomba.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
